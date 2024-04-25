@@ -1,12 +1,14 @@
+from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
 from django import forms
 from .models import Donor
 
 
-class DonorRegisterForm(ModelForm):
+class DonorRegisterForm(UserCreationForm):
     class Meta:
         model = Donor
         fields = "__all__"
+        exclude = ['last_login', 'groups', 'user_permissions', 'total_donated','password']
 
 class DonorLoginForm(forms.Form):
     email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email'}))
@@ -16,4 +18,4 @@ class DonorLoginForm(forms.Form):
 class DonorUpdateForm(forms.Form):
     class Meta:
         model = Donor
-        fields = ('email','usernam', 'phone')
+        fields = ('email','username', 'phone')

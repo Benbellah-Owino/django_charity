@@ -1,11 +1,11 @@
 # Create your models here.
-from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.contrib.auth.models import AbstractBaseUser, Group, Permission
 from django.db import models
 
 
 # Create your models here.
 
-class Owner(AbstractUser):
+class Owner(AbstractBaseUser):
     gender_list = (
         ('F', 'Female'),
         ('M', 'Male'),
@@ -15,7 +15,7 @@ class Owner(AbstractUser):
     email = models.EmailField(max_length=100, unique=True)
     phone = models.CharField(max_length=20, )
     gender = models.CharField(max_length=1, choices=gender_list)
-    avatar = models.ImageField(null=True)
+    avatar = models.ImageField(null=True,blank = True)
     bio = models.TextField(null=True)
     bank_account = models.CharField(max_length=50, null=True, blank=True)
     groups = models.ManyToManyField(Group, related_name='owner_groups')

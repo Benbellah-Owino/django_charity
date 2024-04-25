@@ -1,12 +1,14 @@
+from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
 from django import forms
 from .models import Owner, Charity
 
 
-class OwnerRegisterForm(ModelForm):
+class OwnerRegisterForm(UserCreationForm):
     class Meta:
         model = Owner
         fields = "__all__"
+        exclude = ['last_login', 'groups', 'user_permissions', 'password']
 
 
 class OwnerLoginForm(forms.Form):
@@ -20,7 +22,7 @@ class OwnerUpdateForm(forms.Form):
         fields = ('email', 'username', 'phone')
 
 
-class CharityCreateForm(forms.Form):
+class CharityCreateForm(forms.ModelForm):
     class Meta:
         model = Charity
         fields = ('name', 'description', 'phone_number', 'address', 'website', 'mission')

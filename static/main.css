@@ -1,0 +1,324 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+	--primary: #D8E2DC;
+	--secondary: #FFE5D9;
+	--tertiary: #FFCAD4;
+	--additional_1: #F4ACB7;
+    --additional_2: #9D8189;
+}
+
+*{
+    font-family: "Poppins", sans-serif;
+}
+body{
+    background: #fefefe;
+
+    padding:0px;
+
+}
+
+main{
+    margin:0;
+    padding:8px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center
+    width:100vw;
+    height:100vh;
+
+}
+ffcad4
+/* section:     Utils */
+var
+.p_1{
+    padding:0.5rem;
+}
+
+button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    margin:4px;
+cursor: pointer;
+}
+
+primary_btn{
+    padding:2px;
+    border: 1px solid var(--additional_2);
+    background-color: var(--primary);
+    cursor: pointer;
+
+}
+primary_btn:hover{
+    transition: 0.3s ease-in-out all;
+    cursor: pointer;
+}
+
+/* section:    ---backgrounds */
+/* backgrounds */
+.main_bg {
+	background-color: var(--primary);
+}
+
+.secondary_bg {
+	background-color: var(--secondary);
+}
+
+.tertiary_bg {
+	background-color: var(--tertiary);
+}
+
+/* section:      ---hover backgrounds */
+.main_bg_hover {
+	transition: all ease-in-out 0.3s;
+}
+
+.secondary_bg_hover {
+	transition: all ease-in-out 0.3s;
+}
+
+.tertiary_bg_hover {
+	transition: all ease-in-out 0.3s;
+}
+
+/* hover */
+.main_bg_hover:hover {
+	background-color: var(--primary);
+}
+
+.secondary_bg_hover:hover {
+	background-color: var(--secondary);
+}
+
+.tertiary_bg_hover:hover {
+	background-color: var(--tertiary);
+}
+
+/* endsection: 	  ---backgrounds */
+
+
+/* section:      ---hover text */
+.main_txt {
+	color: var(--primary)
+}
+
+.secondary_txt {
+	color: var(--secondary);
+}
+
+.tertiary_txt {
+	color: var(--tertiary);
+}
+
+/* hover */
+.main_txt_hover {
+	transition: all ease-in-out 0.3s;
+}
+
+.secondary_txt_hover {
+	transition: all ease-in-out 0.3s;
+}
+
+.tertiary_txt_hover {
+	transition: all ease-in-out 0.3s;
+}
+
+.main_txt_hover:hover {
+	color: var(--primary);
+}
+
+.secondary_txt_hover:hover {
+	color: var(--secondary);
+}
+
+.tertiary_txt_hover:hover {
+	color: var(--tertiary);
+}
+
+/* endsection:      ---hover text */
+
+
+
+/* section:      ---hover border */
+.main_border {
+	border: 1px solid var(--primary)
+}
+
+.secondary_border {
+	border: 1px solid var(--secondary)
+}
+
+.tertiary_border {
+	border: 1px solid var(--tertiary)
+}
+
+.spinner_border {
+	border: 4px solid var(--tertiary)
+}
+
+/* hover */
+.main_border_hover {
+	transition: all ease-in-out 0.3s;
+}
+
+.secondary_border_hover {
+	transition: all ease-in-out 0.3s;
+}
+
+.tertiary_border_hover {
+	transition: all ease-in-out 0.3s;
+}
+
+.main_border_hover:hover {
+	border: 1px solid var(--primary)
+}
+
+.secondary_border_hover:hover {
+	border: 1px solid var(--secondary)
+}
+
+.tertiary_border_hover:hover {
+	border: 1px solid var(--tertiary)
+}
+
+/* endsection:      ---hover border */
+
+
+
+/* section:		---shadow hover */
+.main_shadow {
+	box-shadow: 0px 4px 4px 4px var(--primary)
+}
+
+.secondary_shadow {
+	box-shadow: 0px 4px 4px 4px var(--secondary)
+}
+
+.tertiary_shadow {
+	box-shadow: 0px 4px 4px 4px var(--tertiary)
+}
+
+.main_shadow_hover {
+	transition: all ease-in-out 0.3s;
+}
+
+.secondary_shadow_hover {
+	transition: all ease-in-out 0.3s;
+}
+
+.tertiary_shadow_hover {
+	transition: all ease-in-out 0.3s;
+}
+
+.main_shadow_hover:hover {
+	box-shadow: 0px 4px 4px 4px var(--primary)
+}
+
+.secondary_shadow_hover:hover {
+	box-shadow: 0px 4px 4px 4px var(--secondary)
+}
+
+.tertiary_shadow_hover:hover {
+	box-shadow: 0px 4px 4px 4px var(--tertiary)
+}
+
+/* endsection: 		---shadow hover */
+
+/* endsection:  Utils */
+
+/* section:     Flex */
+
+.flex{
+    display:flex;
+}
+
+.flex_col{
+    flex-direction:column;
+}
+
+.flex_row{
+    flex-direction: row;
+}
+
+.justify_center{
+    justify-content: center
+}
+
+.justify_space_btwn{
+    justify-content: space-between
+}
+
+.justify_space_around{
+    justify-content: space-around
+}
+
+.justify_space_evenly{
+    justify-content: space-evenly
+}
+
+.justify_flex_start{
+    justify-content: flex-start
+}
+
+.justify_flex_end{
+    justify-content: flex-end
+}
+
+.items_center{
+    align-items:center;
+}
+
+.items_start{
+    align-items: flex-start
+}
+
+.items_end{
+    align-items: flex-end
+}
+/* endsection:  Flex */
+
+
+/* section:     charity */
+.charity_list{
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center;
+    width:95%;
+
+}
+.charity{
+    width:80%;
+    max-width:800px;
+    border:black solid 1px;
+    padding:4px;
+    heigth:100px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+}
+
+.charity_name{
+    text-align:center;
+    font-size:21px;
+    background-color:grey;
+}
+
+.charity_mission{
+    font-size:12px;
+    width:90%;
+    height:40px;
+    border:black grey 1px;
+    background-color: red
+}
+
+.charity_contacts{
+    width:80%;
+    background-color: red
+}
+/* endsection:    charity */

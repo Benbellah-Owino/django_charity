@@ -1,0 +1,22 @@
+{% extends 'bases/owner_base.html' %}
+
+{% block title %} New Charity {% endblock title %}
+
+{% block content %}
+    <section class="charity_list">
+        {% for charity in charities %}
+        <article class="charity">
+            <h3 class="charity_name">{{ charity.name }}</h3>
+            <p class="charity_mission">{{ charity.mission }}</p>
+            <span class="total_donations"><b>Total donations:</b>{{ charity.total_donations }}</span>
+            <div class="charity_contacts flex flex_row justify_space_evenly items_center p_1">
+                <span class="phone"><b>Phone: </b>{{ charity.phone_number }}<br></span>
+                <span class="website"><b>Website: </b>{{ charity.website }}</span>
+            </div>
+<!--     Add link to charity owner       <span></span>-->
+            <a href='{{ charity.id }}'  alt='Open {{ charity.name }} details' class="main_txt_hover ">Learn more</a>
+        </article>
+
+    {% endfor %}
+    </section>
+{% endblock content %}

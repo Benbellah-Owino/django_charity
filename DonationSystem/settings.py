@@ -98,6 +98,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+#Authentication backends
+AUTHENTICATION_BACKENDS = (
+    'donor.backends.DonorBackend',
+    'charity.backends.OwnerBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -121,4 +128,4 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

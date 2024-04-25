@@ -1,0 +1,23 @@
+{% extends 'bases/owner_base.html' %}
+
+{% block title %} New Charity {% endblock title %}
+
+{% block content %}
+
+            <section class="charity_page">
+<!--                Charity logo here-->
+                <h1 class="charity_name">{{ charity.name }}</h1>
+                <h4 class="charity_description">{{ charity.description }}</h4>
+
+                <span class="phone">{{ charity.phone }}</span>
+
+                <article class="donations">
+                    <span class="total_donations">{{ charity.total_donations }}</span>
+                    <button class="donate">Donate</button>
+                </article>
+                <span class="website">{{ charity.website }}</span>
+<!--     Add link to charity owner       <span></span>-->
+
+
+            </section>
+{% endblock content %}
