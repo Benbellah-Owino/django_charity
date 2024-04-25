@@ -35,7 +35,7 @@ def register(request):
                     group = Group.objects.get(name='Donors')
                 except Group.DoesNotExist:
                     group = Group.objects.create(name='Donors')
-
+                print(group)
                 new_donor.groups.add(group)
                 print(new_donor)
                 new_donor.save()
@@ -75,11 +75,11 @@ def login_donor(request):
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
 
-            db_user = Donor.objects.get(email=email)
-            print(db_user.check_password(password))
-            print("Email: ", db_user.email)
-            print("Password: ", db_user.password)
-            print("Is active: ", db_user.is_active)
+            # db_user = Donor.objects.get(email=email)
+            # print(db_user.check_password(password))
+            # print("Email: ", db_user.email)
+            # print("Password: ", db_user.password)
+
             user = authenticate(email=email, password=password, model=Donor)
             print(user)
             if user is not None:
@@ -104,8 +104,15 @@ def get_details(request):
     try:
         donor_object = request.user
         donor = Donor.objects.get(email=donor_object.email)
-        donations = Donor.donations.all()
-        #return the owner object
+        donations = donor.donations.all()
+
+        for donation in donations:
+            print(donation.charity)
+        context = {
+            'donor': donor,
+            'donations':donations
+        }
+        return render(request, 'details/index.html', context)
     except Donor.DoesNotExist:
         return HttpResponse('<center><h1 style="color:red">Donor does not exists</h1></center>')
     return HttpResponse("<center><h1>Details</h1></center>")

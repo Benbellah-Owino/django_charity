@@ -3,7 +3,7 @@
 {% block title %} Owner details {% endblock title %}
 { % load static % }
 {% block content %}
-
+{% include 'components/owner_navbar.html' %}
             <section class="owner_details_page p_1 flex flex_col justify_start items_center">
 <!--                owner logo here-->
                 <h1 class="owner_name">{{ owner.username }}</h1>
@@ -16,21 +16,21 @@
                   <span class="owner_email ">{{ owner.bank_account }}</span>
                 <a href="{{ owner.website }}" class="page_website_link">{{ owner.website }}</a>
 <!--     Add link to owner owner       <span></span>-->
-            <table style="margin-top:16px ">
-                <thead>
-                    <th>Amount</th>
-                    <th>Date</th>
-                </thead>
+<!--            <table style="margin-top:16px ">-->
+<!--                <thead>-->
+<!--                    <th>Amount</th>-->
+<!--                    <th>Date</th>-->
+<!--                </thead>-->
 
-                <tbody>
-                    {% for donation in donations %}
-                        <tr>
-                            <td class="table_char_amt">ksh{{ donation.amount }}</td>
-                            <td>{{ donation.date }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+<!--                <tbody>-->
+<!--                    {% for donation in donations %}-->
+<!--                        <tr>-->
+<!--                            <td class="table_char_amt">ksh{{ donation.amount }}</td>-->
+<!--                            <td>{{ donation.date }}</td>-->
+<!--                        </tr>-->
+<!--                    {% endfor %}-->
+<!--                </tbody>-->
+<!--            </table>-->
             </section>
 
 {% endblock content %}

@@ -1,0 +1,14 @@
+{% url 'charity:charity_get_all' as all_charities %}
+{% url 'donor:donor_details' as details %}
+<nav class="navbar flex justify_space_btwn">
+    <div class="nav_branding">
+        CharitySystem
+    </div>
+
+
+    <section class="nav_links flex justify_space_around items_center">
+        <a href="{{ all_charities }}" class="nav_link">Charities</a>
+
+        <a href="{{ details }}" class="nav_link">My Page</a>
+    </section>
+</nav>

@@ -15,17 +15,18 @@ class Owner(AbstractBaseUser):
     email = models.EmailField(max_length=100, unique=True)
     phone = models.CharField(max_length=20, )
     gender = models.CharField(max_length=1, choices=gender_list)
-    avatar = models.ImageField(null=True,blank = True)
+    avatar = models.ImageField(null=True,blank = True, upload_to='owner_avatars/')
     bio = models.TextField(null=True)
     bank_account = models.CharField(max_length=50, null=True, blank=True)
     groups = models.ManyToManyField(Group, related_name='owner_groups')
     user_permissions = models.ManyToManyField(Permission, related_name='owner_permissions')
+    role = models.CharField(max_length=10,  default='owner', editable=False)
 
     USERNAME_FIELD = "email"
 
 
 class Charity(models.Model):
-    name = models.CharField(max_length=10)
+    name = models.CharField(max_length=100)
     description = models.TextField()
     phone_number = models.CharField(max_length=20)
     address = models.CharField(max_length=255)

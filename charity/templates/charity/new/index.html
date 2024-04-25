@@ -3,7 +3,7 @@
 {% block title %} New Charity {% endblock title %}
 
 {% block content %}
-    <form class="login_form" method="POST">
+    <form class="login_form" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{form.as_p}}
         <button type="submit">Start charity</button>

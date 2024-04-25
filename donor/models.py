@@ -12,7 +12,7 @@ class Donor(AbstractBaseUser):
     )
     username = models.CharField(max_length=40, unique=True)
     email = models.EmailField(max_length=100, unique=True)
-
+    role = models.CharField(max_length=10,  default='donor', editable=False)
     phone = models.CharField(max_length=20, null=True)
     gender = models.CharField(max_length=1, choices=gender_list, null=True)
     total_donated = models.DecimalField(max_digits=10, decimal_places=2, default=0)

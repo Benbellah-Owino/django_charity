@@ -25,7 +25,7 @@ class OwnerUpdateForm(forms.Form):
 class CharityCreateForm(forms.ModelForm):
     class Meta:
         model = Charity
-        fields = ('name', 'description', 'phone_number', 'address', 'website', 'mission')
+        fields = ('name', 'description', 'phone_number', 'address', 'website', 'mission','logo')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

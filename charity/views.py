@@ -29,7 +29,7 @@ def register_owner(request):
     print("Owners: ", owners)
 
     if request.method == 'POST':
-        form = OwnerRegisterForm(request.POST)
+        form = OwnerRegisterForm(request.POST, request.FILES)
         print('Hey')
         if form.is_valid():
             print('Hey')
@@ -42,8 +42,8 @@ def register_owner(request):
 
             new_owner.groups.add(group)
             print(new_owner)
-
-            return redirect('charity/login_owner')
+            login_url = reverse('charity:charity_owner_login')
+            return redirect(login_url)
         else:
             print('Problems')
             print(form.errors)
@@ -100,21 +100,19 @@ def get_owner_details(request):
     try:
         owner_object = request.user
         print(owner_object.id)
+        for o in Owner.objects.all():
+            print(f"id:{o.id}, name:{o.username}, email:{o.email}")
         owner = Owner.objects.get(id=owner_object.id)
-        print(owner.objects.all())
+
         print(owner)
-        donations = Owner.donations.all()
 
         context = {
             'owner': owner,
-            'donations': donations,
-
         }
-        return render(request,'owner/details/index.html', context)
+        return render(request, 'owner/details/index.html', context)
     except Owner.DoesNotExist:
         #return render(request, 'owner/details/index.html', context)
         return HttpResponse('<center><h1 style="color:red">Owner does not exists</h1></center>')
-
 
 
 @login_required
@@ -156,14 +154,14 @@ def create_charity(request):
     form = CharityCreateForm()
 
     if request.method == 'POST':
-        form = CharityCreateForm(request.POST)
+        form = CharityCreateForm(request.POST, request.FILES)
 
         if form.is_valid:
             charity = form.save(commit=False)
             charity.creator = request.user
             charity.save()
-
-            return redirect('')
+            list_url = reverse("charity_get_owners")
+            return redirect(list_url)
 
     return render(request, 'charity/new/index.html', {'form': form})
 
@@ -180,7 +178,7 @@ def get_charities(request):
             """
     #try:
     charities = Charity.objects.all()
-    print(charities)
+
 
     return render(request, 'charity/list/index.html', {'charities': charities})
     # except :
@@ -224,9 +222,9 @@ def get_charity(request, pk):
         print(donations)
         # for donation in donations:
         #     print(f"{donation.amount}  {donation.date}")
-        form = DonationForm(initial={'charity':charity.id})
+        form = DonationForm(initial={'charity': charity.id})
 
-        return render(request, 'charity/index.html', {'charity': charity, 'form':form, 'donations':donations})
+        return render(request, 'charity/index.html', {'charity': charity, 'form': form, 'donations': donations})
         # Donations
     except:
         print('err')

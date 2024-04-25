@@ -1,0 +1,33 @@
+{% extends 'bases/donor_base.html' %}
+
+{% block title %} donor details {% endblock title %}
+{ % load static % }
+{% block content %}
+
+            <section class="donor_details_page p_1 flex flex_col justify_start items_center">
+                <article class="flex flex_col justify_flex_start items_start">
+                    <h1 class="donor_name"><b>Username: </b>{{ donor.username }}</h1>
+                    <span class="donor_email "><b>Email: </b>{{ donor.email }}</span>
+                    <span class="phone"><b>Phone: </b>{{ donor.phone }}</span>
+                    <span class="donor_email "><b>Gender: </b>{{ donor.gender }}</span>
+               </article>
+
+         <span></span>
+            <table style="margin-top:16px ">
+                <thead>
+                    <th>Amount</th>
+                    <th>Date</th>
+                </thead>
+
+                <tbody>
+                    {% for donation in donations %}
+                        <tr>
+                            <td class="table_char_amt">ksh{{ donation.amount }}</td>
+                            <td>{{ donation.date }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            </section>
+
+{% endblock content %}
