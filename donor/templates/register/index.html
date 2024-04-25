@@ -3,9 +3,11 @@
 {% block title %} Donor registration {% endblock title %}
 
 {% block content %}
-    <form class="register_form" method="POST">
+    <form class="register_form flex flex_col justify_start " method="POST">
         {% csrf_token %}
         {{form.as_p}}
-        <button type="submit">register</button>
+        <button type="submit" class="primary_btn">register</button>
     </form>
+
+
 {% endblock content %}

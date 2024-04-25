@@ -1,4 +1,5 @@
 <!doctype html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,8 +7,12 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
 </head>
 <body>
-    {% block content %} {% endblock content %}
+
+    <main class="main">
+        {% block content %} {% endblock content %}
+    </main>
 </body>
 </html>

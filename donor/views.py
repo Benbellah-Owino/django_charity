@@ -3,6 +3,7 @@ from django.contrib.auth.models import Group, Permission
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.shortcuts import render, redirect
+from django.urls import reverse
 
 from .forms import DonorRegisterForm, DonorLoginForm, DonorUpdateForm
 from .models import Donor
@@ -28,18 +29,19 @@ def register(request):
             if form.is_valid():
                 cd = form.clean()
                 print(cd)
-                new_donor = form.save(commit=False)  # create Donator object but not save it yet
+                new_donor = form.save()  # create Donator object but not save it yet
 
                 try:
                     group = Group.objects.get(name='Donors')
                 except Group.DoesNotExist:
-                    group = Group.objects.create(name='Donor')
+                    group = Group.objects.create(name='Donors')
 
                 new_donor.groups.add(group)
                 print(new_donor)
                 new_donor.save()
 
-                return redirect('donor/login_donor')
+                donor_login = reverse('donor:donor_login')
+                return redirect(donor_login)
 
 
             else:
@@ -83,6 +85,8 @@ def login_donor(request):
             if user is not None:
                 login(request, user)
                 print("logged in")
+                charity_url = reverse('charity:charity_get_all')
+                return redirect(charity_url)
 
     return render(request, 'login/index.html', {'form': form})
 

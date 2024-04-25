@@ -2,6 +2,7 @@ from django.urls import path
 
 from . import views
 
+app_name = 'donation'
 urlpatterns = [
     path("", views.make_donation, name="donation_new"),
     path("charity/<str:pk>", views.get_donations, name="donation_get_all_charity"),

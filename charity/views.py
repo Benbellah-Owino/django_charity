@@ -4,9 +4,12 @@ from django.contrib.auth.models import Group
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect, render
+from django.urls import reverse
 
 from .forms import OwnerRegisterForm, OwnerLoginForm, OwnerUpdateForm, CharityCreateForm, CharityUpdateForm
 from .models import Owner, Charity
+from donation.models import Donation
+from donation.forms import DonationForm
 
 
 # Create your views here.
@@ -23,7 +26,7 @@ def register_owner(request):
     """
     form = OwnerRegisterForm()
     owners = Owner.objects.all()
-    print("Owners: ",owners)
+    print("Owners: ", owners)
 
     if request.method == 'POST':
         form = OwnerRegisterForm(request.POST)
@@ -40,12 +43,10 @@ def register_owner(request):
             new_owner.groups.add(group)
             print(new_owner)
 
-
-            return redirect('charity/login_owner)')
+            return redirect('charity/login_owner')
         else:
             print('Problems')
             print(form.errors)
-
 
     return render(request, 'owner/register/index.html', {'form': form})
 
@@ -78,6 +79,8 @@ def login_owner(request):
             if owner is not None:
                 login(request, owner)
                 print("logged in")
+                url = reverse('charity:charity_get_owners')
+                return redirect(url)
             print(owner)
 
     return render(request, 'owner/login/index.html', {'form': form})
@@ -96,16 +99,22 @@ def get_owner_details(request):
         """
     try:
         owner_object = request.user
-        owner = Owner.objects.get(email=owner_object.email)
+        print(owner_object.id)
+        owner = Owner.objects.get(id=owner_object.id)
+        print(owner.objects.all())
+        print(owner)
         donations = Owner.donations.all()
+
         context = {
-            owner: owner,
-            donations: donations
+            'owner': owner,
+            'donations': donations,
+
         }
-        #return the owner object
+        return render(request,'owner/details/index.html', context)
     except Owner.DoesNotExist:
+        #return render(request, 'owner/details/index.html', context)
         return HttpResponse('<center><h1 style="color:red">Owner does not exists</h1></center>')
-    return HttpResponse("<center><h1>Details owner</h1></center>")
+
 
 
 @login_required
@@ -154,9 +163,9 @@ def create_charity(request):
             charity.creator = request.user
             charity.save()
 
-            #return confirmation
+            return redirect('')
 
-    return render(request, 'charity/new/index.html', {'form':form})
+    return render(request, 'charity/new/index.html', {'form': form})
 
 
 def get_charities(request):
@@ -173,10 +182,29 @@ def get_charities(request):
     charities = Charity.objects.all()
     print(charities)
 
-    return render(request, 'charity/list/index.html', {'charities':charities})
+    return render(request, 'charity/list/index.html', {'charities': charities})
     # except :
     #     return HttpResponse('<center><h1 style="color:red">Error listing charity</h1></center>')
 
+
+@login_required()
+def get_owners_charities(request):
+    """
+               View function for handling requests to /charity/owners/<str:pk>.
+
+               Parameters:
+               - request: The HTTP request object.
+
+               Returns:
+               -.
+            """
+    #try:
+    charities = Charity.objects.filter(creator=request.user.id)
+    print(charities)
+
+    return render(request, 'charity/list/index.html', {'charities': charities})
+    # except :
+    #     return HttpResponse('<center><h1 style="color:red">Error listing charity</h1></center>')
 
 
 def get_charity(request, pk):
@@ -191,12 +219,18 @@ def get_charity(request, pk):
             """
     try:
         charity = Charity.objects.get(id=pk)
-        return render(request, 'charity/index.html', {'charity': charity})
+        print(charity)
+        donations = charity.donations.all()
+        print(donations)
+        # for donation in donations:
+        #     print(f"{donation.amount}  {donation.date}")
+        form = DonationForm(initial={'charity':charity.id})
+
+        return render(request, 'charity/index.html', {'charity': charity, 'form':form, 'donations':donations})
         # Donations
     except:
+        print('err')
         return HttpResponse('<center><h1 style="color:red">Error fetching charity</h1></center>')
-
-    return HttpResponse("<center><h1>Get charity </h1></center>")
 
 
 @login_required

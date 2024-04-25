@@ -10,8 +10,12 @@
     <link rel="stylesheet" href="{% static 'main.css' %}">
 </head>
 <body>
+
     <main class="main">
+        {% include 'components/navbar.html' %}
         {% block content %} {% endblock content %}
     </main>
+
+<script src="{% static 'js/charity_page.js' %}"></script>
 </body>
 </html>

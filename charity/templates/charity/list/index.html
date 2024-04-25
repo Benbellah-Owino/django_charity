@@ -7,14 +7,14 @@
         {% for charity in charities %}
         <article class="charity">
             <h3 class="charity_name">{{ charity.name }}</h3>
-            <p class="charity_mission">{{ charity.mission }}</p>
-            <span class="total_donations"><b>Total donations:</b>{{ charity.total_donations }}</span>
-            <div class="charity_contacts flex flex_row justify_space_evenly items_center p_1">
+            <p class="charity_mission"><b>Mission: </b>{{ charity.mission }}</p>
+            <span class="total_donations mt_1"><b>Total donations:</b>{{ charity.total_donations }}</span>
+            <div class="charity_contacts  mt_1 flex flex_row justify_space_evenly items_center p_1">
                 <span class="phone"><b>Phone: </b>{{ charity.phone_number }}<br></span>
                 <span class="website"><b>Website: </b>{{ charity.website }}</span>
             </div>
 <!--     Add link to charity owner       <span></span>-->
-            <a href='{{ charity.id }}'  alt='Open {{ charity.name }} details' class="main_txt_hover ">Learn more</a>
+            <a href='{{ charity.id }}'  alt='Open {{ charity.namea }} details' class="add2_txt_hover pri_txt ">Click here to learn more</a>
         </article>
 
     {% endfor %}

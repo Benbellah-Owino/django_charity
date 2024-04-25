@@ -19,24 +19,59 @@ body{
 
 }
 
+table, th, td{
+    border: 0.5px solid #3e3e3e;
+    border-collapse: collapse;
+}
+
+td,th{
+    padding: 8px;
+
+}
+
+.table_char_amt{
+    width:200px;
+    text-align:right
+}
+
+
 main{
     margin:0;
     padding:8px;
     display:flex;
     flex-direction:column;
     justify-content:flex-start;
-    align-items:center
+    align-items:center;
     width:100vw;
     height:100vh;
 
 }
-ffcad4
+
 /* section:     Utils */
-var
+
 .p_1{
     padding:0.5rem;
 }
 
+.m_1{
+    margin:0.5rem;
+}
+
+.mt_1{
+    margin-top:0.5rem;
+}
+
+.ml_1{
+    margin-left:0.5rem;
+}
+
+.mb_1{
+    margin-bottom:0.5rem;
+}
+
+.mr_1{
+    margin-right:0.5rem;
+}
 button {
 	display: flex;
 	justify-content: center;
@@ -69,6 +104,9 @@ primary_btn:hover{
 
 .tertiary_bg {
 	background-color: var(--tertiary);
+}
+.platinum_bg{
+    background-color:#E5E4E2
 }
 
 /* section:      ---hover backgrounds */
@@ -113,6 +151,11 @@ primary_btn:hover{
 	color: var(--tertiary);
 }
 
+.pri_txt{
+    color:#0e0e0e
+}
+
+
 /* hover */
 .main_txt_hover {
 	transition: all ease-in-out 0.3s;
@@ -137,6 +180,22 @@ primary_btn:hover{
 .tertiary_txt_hover:hover {
 	color: var(--tertiary);
 }
+.add1_txt_hover {
+	transition: all ease-in-out 0.3s;
+}
+
+.add1_txt_hover:hover {
+	color: var(--additional_1);
+}
+
+.add2_txt_hover {
+	transition: all ease-in-out 0.3s;
+}
+
+.add2_txt_hover:hover {
+	color: var(--additional_2);
+}
+
 
 /* endsection:      ---hover text */
 
@@ -281,6 +340,68 @@ primary_btn:hover{
 /* endsection:  Flex */
 
 
+/* section:     Buttons */
+.primary_btn{
+    width:fit-content;
+    height:fit-content;
+    max-height:50px;
+    max-width:80px;
+    background-color:var(--primary);
+    border:1px var(--additional_2) solid;
+    border-radius:0.5rem;
+    padding:4px;
+    font-weight:bold;
+    margin-left:auto;
+    margin-right:auto;
+}
+.primary_btn:hover{
+    background-color:var(--tertiary);
+    box-shadow: 0px 3px 3px 2px var(--secondary);
+    transition: ease-in-out all 0.3s;
+
+}
+/* endsection:  Buttons */
+
+/* endsection:  Utils */
+
+
+/* section:     Main */
+
+/* endsection:  Main */
+
+
+/* section:     Navbar*/
+.navbar{
+    background-color:#E5E4E2;
+    width:90%;
+    border-bottom: 1px solid #0e0e0e;
+    padding: 1rem 3rem 1rem 3rem;
+    margin-bottom:1rem;
+}
+
+.nav_branding{
+    width:100px;
+    height:90%;
+    font-weight:bold;
+    font-size:24px;
+}
+.nav_links{
+    width:40%;
+
+}
+
+.nav_link{
+    color: #1e1e1e
+}
+
+.nav_link:hover{
+    color: var(--additional_2);
+    transition:all ease-in-out 0.3s;
+
+}
+/* endsection:  Navbar */
+
+
 /* section:     charity */
 .charity_list{
     display:flex;
@@ -293,20 +414,22 @@ primary_btn:hover{
 .charity{
     width:80%;
     max-width:800px;
-    border:black solid 1px;
-    padding:4px;
-    heigth:100px;
+    border:lightgray solid 1px;
+    padding:2px;
+    heigth:50px;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
+    border-radius:1rem;
+    background-color:#E5E4E2
 
 }
 
 .charity_name{
     text-align:center;
     font-size:21px;
-    background-color:grey;
+
 }
 
 .charity_mission{
@@ -314,11 +437,138 @@ primary_btn:hover{
     width:90%;
     height:40px;
     border:black grey 1px;
-    background-color: red
+
 }
 
 .charity_contacts{
     width:80%;
-    background-color: red
+
 }
+
+.charity_page{
+    height:90vh;
+    width:80%;
+    background-color:#E5E4E2;
+    border-radius:1rem;
+    padding: 8px;
+}
+
+.charity_description{
+    height:fit-content;
+    max-height:400px;
+    min-height:100px;
+    font-size: 12px;
+    width:70%;
+    padding:1rem;
+    border:1px solid var(--additional_2);
+    border-radius:8px
+}
+
+.page_donations{
+    margin-top: 300px
+}
+
+.page_donations{
+    margin-top: 300px;
+}
+
+.page_donate{
+    margin-top: 2rem;
+    border-radius:8px;
+    border:1px solid var(--additional_2);
+    font-weight:bold;
+}
+
+.page_website_link{
+    margin-top: 3rem
+}
+
+
 /* endsection:    charity */
+
+/* section:     charity page */
+
+/* endsection:  charity page */
+
+/* section:     Forms */
+.register_form{
+    background-color:#E5E4E2;
+    width:800px;
+    height:fit-content;
+    padding:1rem;
+    font-size:14px;
+    border-radius:1rem;
+
+}
+
+
+.register_form p{
+    width: 95%;
+
+    display:flex;
+    justify-content:space-around;
+    align-items:center
+}
+
+.register_form p label{
+    font-weight:bold;
+    display:block;
+    width:150px;
+    margin-left:8px;
+}
+
+.register_form p input{
+
+    width:250;
+
+}
+
+.login_form{
+    background-color:#E5E4E2;
+    width:400px;
+    height:fit-content;
+    padding:1rem;
+    font-size:14px;
+    border-radius:1rem;
+
+}
+
+.login_form p{
+    width: 95%;
+
+    display:flex;
+    justify-content:space-around;
+    align-items:center
+}
+
+.login_form p label{
+    font-weight:bold;
+    display:block;
+    width:150px;
+    margin-left:8px;
+}
+
+.login_form p input{
+    width:250;
+}
+
+.login_btn{
+    width:fit-content;
+    height:fit-content;
+    max-height:50px;
+    max-width:80px;
+    background-color:var(--primary);
+    border:1px var(--additional_2) solid;
+    border-radius:0.5rem;
+    padding:4px;
+    font-weight:bold;
+    margin-left:auto;
+    margin-right:auto;
+}
+.login_btn:hover{
+    background-color:var(--tertiary);
+    box-shadow: 0px 3px 3px 2px var(--secondary);
+    transition: ease-in-out all 0.3s;
+
+}
+/* endsection:  Forms */

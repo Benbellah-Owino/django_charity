@@ -1,23 +1,44 @@
 {% extends 'bases/owner_base.html' %}
 
-{% block title %} New Charity {% endblock title %}
-
+{% block title %} Charity {% endblock title %}
+{ % load static % }
 {% block content %}
 
-            <section class="charity_page">
+            <section class="charity_page p_1 flex flex_col justify_start items_center">
 <!--                Charity logo here-->
                 <h1 class="charity_name">{{ charity.name }}</h1>
-                <h4 class="charity_description">{{ charity.description }}</h4>
+                <p class="charity_description main_border">{{ charity.description }}</p>
 
                 <span class="phone">{{ charity.phone }}</span>
 
-                <article class="donations">
-                    <span class="total_donations">{{ charity.total_donations }}</span>
-                    <button class="donate">Donate</button>
+                <article class="page_donations flex flex_col justify_start items_center">
+                    <span class="page_total_donations"><b>Total donations: </b>Ksh{{ charity.total_donations }}</span>
+
+                    <form class="donation_form flex flex_col justify_center items_center" method="POST" action="{% url 'donation:donation_new'  %}">
+                        {% csrf_token %}
+                        {{form.as_p}}
+
+                        <button type="submit" class="page_donate main_bg secondary_bg_hover tertiary_border" id="donate_button">Donate</button>
+                    </form>
+
                 </article>
-                <span class="website">{{ charity.website }}</span>
+                <a href="{{ charity.website }}" class="page_website_link">{{ charity.website }}</a>
 <!--     Add link to charity owner       <span></span>-->
+            <table style="margin-top:16px ">
+                <thead>
+                    <th>Amount</th>
+                    <th>Date</th>
+                </thead>
 
-
+                <tbody>
+                    {% for donation in donations %}
+                        <tr>
+                            <td class="table_char_amt">ksh{{ donation.amount }}</td>
+                            <td>{{ donation.date }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
             </section>
+
 {% endblock content %}
