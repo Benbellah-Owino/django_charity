@@ -8,9 +8,9 @@
 
     <section class="nav_links flex justify_space_around items_center">
         <a href="{{ all_charities }}" class="nav_link">Charities</a>
-
-            <a href="owner/login" class="nav_link">Login as owner</a>
-            <a href="{{ donor_login }}" class="nav_link">Login as donor</a>
+              <a href="{% url 'home' %}" class="nav_link">Home</a>
+            <a href="{% url 'charity:charity_owner_login' %}" class="nav_link">Login as owner</a>
+            <a href="{% url 'donor:donor_login' %}" class="nav_link">Login as donor</a>
 
     </section>
 </nav>
