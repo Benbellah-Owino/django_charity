@@ -4,16 +4,20 @@
 { % load static % }
 {% block content %}
 {% include 'components/owner_navbar.html' %}
-            <section class="owner_details_page p_1 flex flex_col justify_start items_center">
+            <section class="owner_details_page main_txt p_1 flex flex_col justify_start items_center">
 <!--                owner logo here-->
-                <h1 class="owner_name">{{ owner.username }}</h1>
-                <span class="owner_email ">{{ owner.email }}</span>
 
-                <span class="phone">{{ owner.phone }}</span>
+                {% if owner.avatar %}
+                        <img src="{{ owner.avatar.url }}" alt="Logo of {{ owner.username }}" width="100px" height="100px" style="max-width:600px; border-radius:100%">
+                    {% endif %}
+                <h1 class="owner_name"><b>Username:</b>{{ owner.username }}</h1><br>
+                <span class="owner_email "><b>Email: </b>{{ owner.email }}</span>
 
- <p class="owner_bio main_border">{{ owner.bio }}</p>
-                  <span class="owner_email ">{{ owner.gender }}</span>
-                  <span class="owner_email ">{{ owner.bank_account }}</span>
+                <span class="phone"><b>Phone: </b>{{ owner.phone }}</span>
+
+ <p class="owner_bio main_border main_bg secondary_txt p_1" style="border-radius:1rem; color:#9D8189">{{ owner.bio }}</p>
+                  <span class="owner_email "><b>Gender: </b>{{ owner.gender }}</span>
+                  <span class="owner_email "><b>Bank: </b>{{ owner.bank_account }}</span>
                 <a href="{{ owner.website }}" class="page_website_link">{{ owner.website }}</a>
 <!--     Add link to owner owner       <span></span>-->
 <!--            <table style="margin-top:16px ">-->

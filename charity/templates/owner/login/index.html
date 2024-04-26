@@ -3,9 +3,12 @@
 {% block title %} Owner login {% endblock title %}
 
 {% block content %}
+<center><h1>OWNER LOGIN</h1></center>
     <form class="login_form" method="POST">
         {% csrf_token %}
         {{form.as_p}}
         <button type="submit" class="primary_btn">login</button>
-    </form>
+    </form><br><br>
+<a href="register" style="text-decoration:none" class="main_txt add1_txt_hover">If you don't have an account click here to register</a><br>
+<a href="{% url 'donor:donor_register' %}" style="text-decoration:none" class="secondary_txt add1_txt_hover">Or if you want to donate to a charity click here</a>
 {% endblock content %}

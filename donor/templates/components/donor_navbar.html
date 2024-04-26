@@ -2,13 +2,18 @@
 {% url 'donor:donor_details' as details %}
 <nav class="navbar flex justify_space_btwn">
     <div class="nav_branding">
-        CharitySystem
+        Direct Link
     </div>
 
 
     <section class="nav_links flex justify_space_around items_center">
-        <a href="{{ all_charities }}" class="nav_link">Charities</a>
+        <a href="{% url 'charity:charity_get_all'%}" class="nav_link">Charities</a>
 
-        <a href="{{ details }}" class="nav_link">My Page</a>
+        <a href="{% url 'donor:donor_details' %}" class="nav_link">My Page</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'donor:donor_logout' %}" class="nav_link">Logout</a>
+         {% else %}
+            <a href="{% url 'donor:donor_login' %}" class="nav_link">Login</a>
+        {% endif %}
     </section>
 </nav>

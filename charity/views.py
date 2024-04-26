@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.http import HttpResponse
@@ -139,6 +139,12 @@ def update_owner_details(request):
         return HttpResponse('<center><h1 style="color:red">Error updating Owner</h1></center>')
     return HttpResponse("<center><h1>Update owner details </h1></center>")
 
+@login_required
+def logout_owner(request):
+        logout(request)
+        login_url = reverse('charity:charity_owner_login')
+        return redirect(login_url)  # Redirect to the home page after logout
+
 
 @login_required
 def create_charity(request):
@@ -160,7 +166,7 @@ def create_charity(request):
             charity = form.save(commit=False)
             charity.creator = request.user
             charity.save()
-            list_url = reverse("charity_get_owners")
+            list_url = reverse("charity:charity_get_owners")
             return redirect(list_url)
 
     return render(request, 'charity/new/index.html', {'form': form})
@@ -217,14 +223,14 @@ def get_charity(request, pk):
             """
     try:
         charity = Charity.objects.get(id=pk)
-        print(charity)
+        print(charity.creator.id)
         donations = charity.donations.all()
-        print(donations)
+        donation_count = charity.donations.count()
         # for donation in donations:
         #     print(f"{donation.amount}  {donation.date}")
         form = DonationForm(initial={'charity': charity.id})
 
-        return render(request, 'charity/index.html', {'charity': charity, 'form': form, 'donations': donations})
+        return render(request, 'charity/index.html', {'charity': charity, 'form': form, 'donations': donations, 'donation_count':donation_count })
         # Donations
     except:
         print('err')
@@ -245,10 +251,11 @@ def update_charity(request, pk):
     try:
         charity = Charity.objects.get(id=pk)
 
-        if Charity.creator != request.user.id:
-            print(request)
-            return None  #
+        if charity.creator.id != request.user.id:
+
+            return HttpResponse('<center><h1 style="color:red">You are not authorized</h1></center>')
         else:
+
             form = CharityUpdateForm(instance=charity)
 
             if request.method == 'POST':
@@ -256,10 +263,10 @@ def update_charity(request, pk):
 
                 if form.is_valid():
                     charity = form.save()
+                    url = reverse('charity:charity_get_one', kwargs={'pk': charity.id})
+                    return redirect(url)
 
-                    #return redirect to charity page
-
-            return HttpResponse("<center><h1>Edit charity </h1></center>")
+            return render(request, 'charity/edit/index.html', {'form':form})
     except:
         return HttpResponse('<center><h1 style="color:red">Error fetching charity</h1></center>')
 
@@ -278,12 +285,13 @@ def delete_charity(request, pk):
     try:
         charity = Charity.objects.get(id=pk)
 
-        if charity.creator != request.user.id:
+        if charity.creator.id != request.user.id:
             return None
         else:
             charity.delete()
-            #return response/json
+            return HttpResponse("<center><h1>Charity Deleted </h1></center>")
     except:
         return HttpResponse('<center><h1 style="color:red">Error deleting charity</h1></center>')
 
     return HttpResponse("<center><h1>Delete charity </h1></center>")
+

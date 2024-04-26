@@ -3,9 +3,13 @@
 {% block title %} Owner registration {% endblock title %}
 
 {% block content %}
+<center><h2>OWNER REGISTER</h2></center>
     <form class="register_form" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{form.as_p}}
-        <button type="submit">register</button>
-    </form>
+        <button type="submit" class="primary_btn" style="width:100px; max-width:500px" >register</button>
+    </form><br>
+
+<a href="login" style="text-decoration:none" class="main_txt add1_txt_hover">If you have an account click here to login</a>
+<a href="{% url 'donor:donor_register' %}" style="text-decoration:none" class="secondary_txt add1_txt_hover">Or if you want to donate to a charity click here</a>
 {% endblock content %}

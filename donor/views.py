@@ -1,4 +1,5 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group, Permission
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
@@ -90,7 +91,7 @@ def login_donor(request):
 
     return render(request, 'login/index.html', {'form': form})
 
-
+@login_required
 def get_details(request):
     """
                        View function for handling requests to /donator/.
@@ -117,7 +118,7 @@ def get_details(request):
         return HttpResponse('<center><h1 style="color:red">Donor does not exists</h1></center>')
     return HttpResponse("<center><h1>Details</h1></center>")
 
-
+@login_required
 def update_details(request):
     """
                        View function for handling requests to /donator/edit.
@@ -140,3 +141,9 @@ def update_details(request):
     except:
         return HttpResponse('<center><h1 style="color:red">Error updating donor</h1></center>')
     return HttpResponse("<center><h1>Upd ate details</h1></center>")
+
+@login_required
+def logout_donor(request):
+        logout(request)
+        login_url = reverse('donor:donor_login')
+        return redirect(login_url)  # Redirect to the home page after logout

@@ -3,11 +3,13 @@
 {% block title %} Donor registration {% endblock title %}
 
 {% block content %}
+<center><h1>DONOR REGISTER</h1></center>
     <form class="register_form flex flex_col justify_start " method="POST">
         {% csrf_token %}
         {{form.as_p}}
         <button type="submit" class="primary_btn">register</button>
-    </form>
-
+    </form><br><br>
+<a href="login" style="text-decoration:none" class="main_txt add1_txt_hover">If you have an account click here to login</a><br>
+<a href="{% url 'charity:charity_owner_register' %}" style="text-decoration:none" class="secondary_txt add1_txt_hover">Or if you want to create  a charity click here</a>
 
 {% endblock content %}

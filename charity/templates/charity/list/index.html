@@ -3,14 +3,16 @@
 {% block title %} Charity list{% endblock title %}
 
 {% block content %}
-    {% if user.role == 'owner' %}
+   {% if user.role == 'owner' %}
         {% include 'components/owner_navbar.html' %}
     {% elif user.role == 'donor' %}
         {% include 'components/donor_navbar.html' %}
-{% endif %}
+    {% else %}
+        {% include 'components/navbar.html' %}
+    {% endif %}
     <section class="charity_list">
         {% for charity in charities %}
-        <article class="charity" style="margin-top:16px;">
+        <article class="charity" style="margin-top:2rem;">
             <h3 class="charity_name">{{ charity.name }}</h3>
             <p class="charity_mission"><b>Mission: </b>{{ charity.mission }}</p>
             <span class="total_donations mt_1"><b>Total donations:</b>{{ charity.total_donations }}</span>

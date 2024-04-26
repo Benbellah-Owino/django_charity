@@ -1,15 +1,20 @@
 {% url 'charity:charity_get_all' as all_charities %}
-
-<nav class="navbar flex justify_space_btwn">
+{% url 'charity:charity_get_owners' as owners_charities %}
+<nav class="navbar flex justify_space_btwn" style="margin-top:0px">
     <div class="nav_branding">
-        CharitySystem
+        Direct Link
     </div>
 
 
     <section class="nav_links flex justify_space_around items_center">
         <a href="{{ all_charities }}" class="nav_link">Charities</a>
-        <a href="new" class="nav_link">NEW CHARITY</a>
-        <a href="owner_charities" class="nav_link">My charities</a>
-        <a href="owner" class="nav_link">My Page</a>
+        <a href="{% url 'charity:charity_new' %}" class="nav_link">NEW CHARITY</a>
+        <a href="{% url 'charity:charity_get_owners' %}" class="nav_link">My charities</a>
+        <a href="{% url 'charity:charity_owner_details' %}" class="nav_link">My Page</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'charity:charity_owner_logout' %}" class="nav_link">Logout</a>
+         {% else %}
+            <a href="{% url 'charity:charity_owner_login' %}" class="nav_link">Login</a>
+        {% endif %}
     </section>
 </nav>

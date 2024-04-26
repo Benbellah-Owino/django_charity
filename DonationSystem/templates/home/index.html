@@ -1,0 +1,37 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %} {% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body class="home">
+
+    <center><header class="secondary_txt" style="width:600px; height:250px; font-size:3rem"><h1>DIRECT LINK</h1></header></center>
+    <article class="about" style="margin-top:100px; padding:1rem">
+        Direct Link Charity organization is an NGO company that is located in kahawa Sukari,
+kiambu town. It focuses on helping the poor in all areas of the country in every way they can
+manage. The organization is made up of the CEO, 3 team leaders and volunteers. They
+usually set up charity events in different parts of the country for fundraisings and also to
+come across the needy who need assistance. Most times the funds received are first gathered
+then distributed to people they had identified to help. Donors who make donations online
+currently have only two payment methods which is the company’s mpesa till number which
+they acquire after contacting the organization and physically handing out cash which are later
+deposited in the organization’s account. The organization’s data is all stored in files by one of
+the team leader appointed as the accountant
+    </article>
+
+<section class="home_links flex flex_col justify_center items_center" style="margin-top:3rem;margin-left:auto;margin-right:auto; width:500px; padding: 1rem">
+    <div class="home_link secondary_border flex flex_col justify_center items_center " style="margin-top:1rem;" >
+        <a class ="main_txt tertiary_txt_hover" href="{% url 'donor:donor_login' %} " >Get started as a donor</a>
+    </div>
+    <div class=" home_link secondary_border flex flex_col justify_center items_center " style="margin-top:1rem;">
+        <a class ="main_txt tertiary_txt_hover" href="{% url 'charity:charity_owner_login' %}" >Get started as an owner</a>
+    </div>
+</section>
+</body>
+</html>

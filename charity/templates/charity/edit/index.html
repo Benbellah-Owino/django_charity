@@ -1,0 +1,14 @@
+{% extends 'bases/owner_base.html' %}
+
+{% block title %} Edit Charity {% endblock title %}
+
+{% block content %}
+{% if user.role == 'owner' %}
+        {% include 'components/owner_navbar.html' %}
+{% endif %}
+    <form class="edit_form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="primary_btn" style="width:100px; max-width:500px">edit charity</button>
+    </form>
+{% endblock content %}

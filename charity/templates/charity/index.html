@@ -3,26 +3,49 @@
 {% block title %} Charity {% endblock title %}
 { % load static % }
 {% block content %}
-
+    {% if user.role == 'owner' %}
+        {% include 'components/owner_navbar.html' %}
+    {% elif user.role == 'donor' %}
+        {% include 'components/donor_navbar.html' %}
+    {% else %}
+        {% include 'components/navbar.html' %}
+    {% endif %}
             <section class="charity_page p_1 flex flex_col justify_start items_center">
-<!--                Charity logo here-->
+              {% if charity.logo %}
+                <img src="{{ charity.logo.url }}" alt="Logo of {{ charity.name }}" width="98%" height="400px" style="max-width:600px">
+              {% endif %}
                 <h1 class="charity_name">{{ charity.name }}</h1>
                 <p class="charity_description main_border">{{ charity.description }}</p>
 
-                <span class="phone">{{ charity.phone }}</span>
+                 {% if user.role == 'owner' and user.id == charity.creator.id and donation_count == 0 %}
+                        <a href="delete/{{ charity.id }}" alt="Delete {{ charity.name }}"> Delete charity </a>
+                {% elif user.role == 'owner' and user.id == charity.creator.id %}
+                        <a href="edit/{{ charity.id }}" alt="Edit {{ charity.name }}"> Edit charity </a>
+                {% endif %}
 
-                <article class="page_donations flex flex_col justify_start items_center">
+                <article class="page_owner_details flex flex_col justify_flex_start items_center main_border">
+                    <h5><u>Charity Creator</u></h5>
+                    {% if charity.creator.avatar %}
+                        <img src="{{ charity.creator.avatar.url }}" alt="Logo of {{ charity.creator.username }}" width="60px" height="60px" style="max-width:600px; border-radius:100%">
+                    {% endif %}
+                    <span class="page_owner_name">{{ charity.creator.username }}</span>
+                    <span class="page_owner_email">{{ charity.creator.email }}</span>
+                </article>
+
+                <article class="page_donations flex flex_col justify_start items_center" style="margin-top:50px">
                     <span class="page_total_donations"><b>Total donations: </b>Ksh{{ charity.total_donations }}</span>
-
+                    {% if user.role == 'donor' %}
                     <form class="donation_form flex flex_col justify_center items_center" method="POST" action="{% url 'donation:donation_new'  %}">
                         {% csrf_token %}
                         {{form.as_p}}
 
                         <button type="submit" class="page_donate main_bg secondary_bg_hover tertiary_border" id="donate_button">Donate</button>
                     </form>
+                    {% endif %}
 
                 </article>
                 <a href="{{ charity.website }}" class="page_website_link">{{ charity.website }}</a>
+                <span class="phone"><b>Phone</b>: {{ charity.phone_number }}</span>
 <!--     Add link to charity owner       <span></span>-->
             <table style="margin-top:16px ">
                 <thead>

@@ -1,0 +1,16 @@
+{% url 'charity:charity_get_all' as all_charities %}
+{% url 'donor:donor_login' as donor_login %}
+<nav class="navbar flex justify_space_btwn">
+    <div class="nav_branding">
+        Direct Link
+    </div>
+
+
+    <section class="nav_links flex justify_space_around items_center">
+        <a href="{{ all_charities }}" class="nav_link">Charities</a>
+
+            <a href="owner/login" class="nav_link">Login as owner</a>
+            <a href="{{ donor_login }}" class="nav_link">Login as donor</a>
+
+    </section>
+</nav>
